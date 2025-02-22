@@ -22,18 +22,10 @@ Reset="\033[0m"
 
 pessoas = dict()
 
-def buscar(Nome):
-    "Digite o nome da pessoa que você deseja buscar para receber todos os dados da pessoa!"
-    validacao=0
-    for i,v in pessoas.items():
-        if Nome in v:
-            validacao=1
-            print(f"Nome: {v[0]}")
-            print(f"Telefone: {v[1]}")
-            print(f"E-mail: {v[2]}")
-    if validacao==0:
-        print(f'Não encontramos "{Nome}" no nosso Sistema!')
-
+def cabecalho(arg):
+    print(Negrito+"-"*len(arg))
+    print(Ciano+arg.center(len(arg))+Reset)
+    print(Negrito+"-"*len(arg)+Reset)
 
 
 def adicionar(Nome="Não Informado",Telefone="Não Informado",Email="Não Informado"):
@@ -44,21 +36,51 @@ def adicionar(Nome="Não Informado",Telefone="Não Informado",Email="Não Inform
     contato.append(Email)
     
     pessoas[f'Pessoa {len(pessoas)+1}']=contato
-    
-adicionar("Murilo Souza de Barros","79991463940","muribeco@hotmail.com")
-adicionar("Maria Bragantina Silva","79999816647","mariabraga@gmail.com")
-adicionar("José de Augusto Carvalho","79325916647","josecarv@gmail.com")
 
 def listar():
     print(Negrito+"-"*70+Reset)
     print(Negrito+Ciano+"Lista de Pessoas".center(70)+Reset)
     print(Negrito+"-"*70+Reset)
+    if pessoas=={}:
+        print(Negrito+Verde+"NENHUM CONTATO ADICIONADO!"+Reset)
 
     for pessoa, dados in pessoas.items():
         print(f"{dados[0].ljust(30)}{dados[1].ljust(18)}{dados[2].ljust(15)}")
+    print(Negrito+"-"*70+Reset)
+
+def buscar(Nome):
+    "Digite o nome da pessoa que você deseja buscar para receber todos os dados da pessoa!"
+    validacao=0
+    for i,v in pessoas.items():
+        if Nome in v:
+            validacao=1
+            cabecalho("CONTATO ENCONTRADO!")
+            print(f"{Negrito}{Amarelo}Nome: {v[0]}")
+            print(f"Telefone: {v[1]}")
+            print(f"E-mail: {v[2]}{Reset}")
+    if validacao==0:
+        print(f'Não encontramos "{Nome}" no nosso Sistema!')
+
+def remover(nome_da_pessoa):
+    "Digite o nome da pessoa que você deseja remover para retirar todos os seus dados"
+    validacao=0
+    novo=pessoas.copy()
+    for i,v in pessoas.items():
+        if nome_da_pessoa in v:
+            print("Pessoa Removida!")
+            pessoas.pop(i,None)
+    print(pessoas)
+
+
+
+
+#adicionar("Murilo Souza de Barros","79991463940","muribeco@hotmail.com")
+#adicionar("Maria Bragantina Silva","79999816647","mariabraga@gmail.com")
+#adicionar("José de Augusto Carvalho","79325916647","josecarv@gmail.com")
+
 
 
 #listar()
-buscar("Murilo Souza de Barros")
-#Problemas em Tirar saída, Tava com a ideia de Fazer somente um Dicionário e pegar do dicionário, sem precisar fazer essa lista contatos
+#remover("Murilo Souza de Barros")
 #validar_nomes#()
+#listar()
