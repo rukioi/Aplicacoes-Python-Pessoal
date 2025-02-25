@@ -30,17 +30,17 @@ while True:
             Telefone=input("Digite seu Telefone:").strip()
             Email=input("Digite seu Email: ").strip()
             funcoes.adicionar(Nome,Telefone,Email)
-        if escolha=="2": 
+        elif escolha=="2": 
             funcoes.listar()
-        if escolha=="3":
+        elif escolha=="3":
             buscar_nome=input("Digite o Nome:")
             print("")
             funcoes.buscar(buscar_nome)
             print("")
-        if escolha=="4": #ERRO
+        elif escolha=="4": 
             remover_nome=input("Digite o Nome para Remover: ")
             funcoes.remover(remover_nome)
-        if escolha=="5":
+        elif escolha=="5":
             break
         else:
             print("\033[1m\033[31m~"*30)
